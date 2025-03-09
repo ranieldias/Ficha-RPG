@@ -42,7 +42,7 @@ function updateDropdown() {
 // Function to fetch the first tab name from the Google Sheets API (mocked here)
 function fetchSheetTabName(sheetId, callback) {
     // Construct the URL to call the Google Apps Script API
-    const apiUrl = `https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?spreadsheetId=${sheetId}`;
+    const apiUrl = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${sheetId}`;
 
     // Make an API call to get the sheet name
     fetch(apiUrl)
