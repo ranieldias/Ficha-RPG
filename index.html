@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Planilha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+        .input-box {
+            margin-bottom: 20px;
+        }
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .button-group {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .button-group h3 {
+            margin: 0;
+            font-size: 18px;
+            flex: 1;
+            text-align: left;
+        }
+        .button-group p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+            flex: 1;
+            text-align: right;
+            padding-right: 10px;
+        }
+        .button-group .buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button-group button:first-child {
+            background-color: #ffcccc; /* Light red */
+        }
+        .button-group button:last-child {
+            background-color: #ff9999; /* Darker red */
+        }
+        .button-group.blue button:first-child {
+            background-color: #ccccff; /* Light blue */
+        }
+        .button-group.blue button:last-child {
+            background-color: #9999ff; /* Darker blue */
+        }
+        .button-group.orange button:first-child {
+            background-color: #ffcc99; /* Light orange */
+        }
+        .button-group.orange button:last-child {
+            background-color: #ff9966; /* Darker orange */
+        }
+        .button-group.green button:first-child {
+            background-color: #ccffcc; /* Light green */
+        }
+        .button-group.green button:last-child {
+            background-color: #99ff99; /* Darker green */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Campos para ID da Planilha e Link do Web App -->
+        <div class="input-box">
+            <input type="text" id="spreadsheetId" placeholder="ID da Planilha">
+            <input type="text" id="webAppUrl" placeholder="Link do Web App">
+            <button onclick="saveSettings()">Salvar</button>
+        </div>
+
+        <!-- Input Box para o Valor -->
+        <div class="input-box">
+            <input type="number" id="numberInput" value="0" placeholder="Valor">
+        </div>
+
+        <!-- Button Groups -->
+        <div class="button-group">
+            <h3>HP</h3>
+            <p><span id="currentH13">Loading...</span>/<span id="totalH13">Loading...</span></p>
+            <div class="buttons">
+                <button onclick="updateCell('H13', 'add')">+</button>
+                <button onclick="updateCell('H13', 'subtract')">-</button>
+            </div>
+        </div>
+        <div class="button-group blue">
+            <h3>Mana</h3>
+            <p><span id="currentH14">Loading...</span>/<span id="totalH14">Loading...</span></p>
+            <div class="buttons">
+                <button onclick="updateCell('H14', 'add')">+</button>
+                <button onclick="updateCell('H14', 'subtract')">-</button>
+            </div>
+        </div>
+        <div class="button-group orange">
+            <h3>Alma</h3>
+            <p><span id="currentH15">Loading...</span>/<span id="totalH15">Loading...</span></p>
+            <div class="buttons">
+                <button onclick="updateCell('H15', 'add')">+</button>
+                <button onclick="updateCell('H15', 'subtract')">-</button>
+            </div>
+        </div>
+        <div class="button-group green">
+            <h3>Energia</h3>
+            <p><span id="currentH16">Loading...</span>/<span id="totalH16">Loading...</span></p>
+            <div class="buttons">
+                <button onclick="updateCell('H16', 'add')">+</button>
+                <button onclick="updateCell('H16', 'subtract')">-</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para salvar o ID da planilha e o link do Web App
+        function saveSettings() {
+            const spreadsheetId = document.getElementById("spreadsheetId").value;
+            const webAppUrl = document.getElementById("webAppUrl").value;
+
+            if (!spreadsheetId || !webAppUrl) {
+                alert("Por favor, insira o ID da planilha e o link do Web App.");
+                return;
+            }
+
+            localStorage.setItem("spreadsheetId", spreadsheetId);
+            localStorage.setItem("webAppUrl", webAppUrl);
+            alert("Configurações salvas!");
+        }
+
+        // Função para carregar as configurações salvas
+        function loadSettings() {
+            const spreadsheetId = localStorage.getItem("spreadsheetId");
+            const webAppUrl = localStorage.getItem("webAppUrl");
+
+            if (spreadsheetId && webAppUrl) {
+                document.getElementById("spreadsheetId").value = spreadsheetId;
+                document.getElementById("webAppUrl").value = webAppUrl;
+            }
+        }
+
+        // Função para buscar valores atuais e totais da planilha
+        async function fetchValues() {
+            const spreadsheetId = localStorage.getItem("spreadsheetId");
+            const webAppUrl = localStorage.getItem("webAppUrl");
+
+            if (!spreadsheetId || !webAppUrl) {
+                alert("Por favor, insira o ID da planilha e o link do Web App.");
+                return;
+            }
+
+            const response = await fetch(`${webAppUrl}/values?spreadsheetId=${spreadsheetId}`, {
+                method: "GET",
+            });
+            const data = await response.json();
+            return data;
+        }
+
+        // Função para atualizar a planilha
+        async function updateCell(cell, operation) {
+            const spreadsheetId = localStorage.getItem("spreadsheetId");
+            const webAppUrl = localStorage.getItem("webAppUrl");
+            const numberInput = document.getElementById("numberInput");
+            const inputValue = parseInt(numberInput.value);
+
+            if (isNaN(inputValue)) {
+                alert("Por favor, insira um valor válido.");
+                return;
+            }
+
+            const amount = operation === 'add' ? inputValue : -inputValue;
+
+            const response = await fetch(`${webAppUrl}/update`, {
+                method: "POST",
+                body: JSON.stringify({ spreadsheetId, cell, amount }),
+                headers: { "Content-Type": "application/json" },
+            });
+
+            const result = await response.text();
+            console.log(result);
+
+            numberInput.value = 0;
+            refreshValues();
+        }
+
+        // Função para atualizar os valores exibidos
+        async function refreshValues() {
+            const values = await fetchValues();
+            if (values) {
+                document.getElementById("currentH13").textContent = values.currentH13;
+                document.getElementById("totalH13").textContent = values.totalH13;
+                document.getElementById("currentH14").textContent = values.currentH14;
+                document.getElementById("totalH14").textContent = values.totalH14;
+                document.getElementById("currentH15").textContent = values.currentH15;
+                document.getElementById("totalH15").textContent = values.totalH15;
+                document.getElementById("currentH16").textContent = values.currentH16;
+                document.getElementById("totalH16").textContent = values.totalH16;
+            }
+        }
+
+        // Carregar configurações ao iniciar
+        loadSettings();
+        refreshValues();
+    </script>
+</body>
+</html>
