@@ -79,13 +79,13 @@ function updateSheetInfo(sheetId) {
         .then(response => response.json())
         .then(data => {
             // Populate the table with the data returned from the API
-            document.getElementById('H2Value').textContent = data.currentH2;
-            document.getElementById('H3Value').textContent = data.totalH3;
-            document.getElementById('H4Value').textContent = data.currentH4;
+            document.getElementById('forValue').textContent = data.forValue;
+            document.getElementById('conValue').textContent = data.conValue;
+            document.getElementById('desValue').textContent = data.desValue;
 
-            document.getElementById('H5Value').textContent = data.totalH5;
-            document.getElementById('H6Value').textContent = data.currentH6;
-            document.getElementById('H7Value').textContent = data.totalH7;
+            document.getElementById('habValue').textContent = data.habValue;
+            document.getElementById('intValue').textContent = data.intvalue;
+            document.getElementById('carValue').textContent = data.carValue;
         })
         .catch(error => {
             console.error('Error fetching sheet data:', error);
