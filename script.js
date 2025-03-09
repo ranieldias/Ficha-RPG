@@ -71,8 +71,36 @@ function loadSheetData() {
     }
 }
 
+function updateSheetInfo(sheetId) {
+    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${sheetId}`;
+
+    // Make the API call to get the sheet data
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Populate the table with the data returned from the API
+            document.getElementById('H2Value').textContent = data.currentH2;
+            document.getElementById('H3Value').textContent = data.totalH3;
+            document.getElementById('H4Value').textContent = data.currentH4;
+
+            document.getElementById('H5Value').textContent = data.totalH5;
+            document.getElementById('H6Value').textContent = data.currentH6;
+            document.getElementById('H7Value').textContent = data.totalH7;
+        })
+        .catch(error => {
+            console.error('Error fetching sheet data:', error);
+        });
+}
+
+
 // Initialize the dropdown with stored sheets on page load
 document.addEventListener('DOMContentLoaded', function() {
     updateDropdown();
 });
+
+document.getElementById('sheetDropdown').addEventListener('change', function() {
+    const selectedSheetId = this.value;
+    updateSheetInfo(selectedSheetId);
+});
+
 
