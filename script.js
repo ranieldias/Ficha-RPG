@@ -41,10 +41,25 @@ function updateDropdown() {
 
 // Function to fetch the first tab name from the Google Sheets API (mocked here)
 function fetchSheetTabName(sheetId, callback) {
-    // Simulate an API call to fetch the first tab name (replace with actual API call)
-    const mockTabName = `Tab-${sheetId.slice(0, 5)}`; // Just a mock tab name based on Sheet ID
-    callback(mockTabName);
+    // Construct the URL to call the Google Apps Script API
+    const apiUrl = `https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?spreadsheetId=${sheetId}`;
+
+    // Make an API call to get the sheet name
+    fetch(apiUrl)
+        .then(response => response.json()) // Parse the JSON response
+        .then(data => {
+            if (data.sheetName) {
+                // Call the callback with the actual sheet name
+                callback(data.sheetName);
+            } else {
+                console.error('Sheet name not found in the response.');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching sheet name:', error);
+        });
 }
+
 
 // Function to load the selected sheet data (use as needed)
 function loadSheetData() {
