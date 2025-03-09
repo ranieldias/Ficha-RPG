@@ -170,48 +170,71 @@
         }
 
         // Função para buscar valores atuais e totais da planilha
-        async function fetchValues() {
-            const spreadsheetId = localStorage.getItem("spreadsheetId");
-            const webAppUrl = localStorage.getItem("webAppUrl");
+	async function fetchValues() {
+	    const spreadsheetId = localStorage.getItem("spreadsheetId");
+	    const webAppUrl = localStorage.getItem("webAppUrl");
 
-            if (!spreadsheetId || !webAppUrl) {
-                alert("Por favor, insira o ID da planilha e o link do Web App.");
-                return;
-            }
+	    if (!spreadsheetId || !webAppUrl) {
+		alert("Por favor, insira o ID da planilha e o link do Web App.");
+		return;
+	    }
 
-            const response = await fetch(`${webAppUrl}/values?spreadsheetId=${spreadsheetId}`, {
-                method: "GET",
-            });
-            const data = await response.json();
-            return data;
-        }
+	    // Use o endpoint correto (sem /values)
+	    const url = `${webAppUrl}?spreadsheetId=${spreadsheetId}`;
+
+	    try {
+		const response = await fetch(url, {
+		    method: "GET",
+		});
+
+		if (!response.ok) {
+		    throw new Error(`Erro na requisição: ${response.status}`);
+		}
+
+		const data = await response.json();
+		return data;
+	    } catch (error) {
+		console.error("Erro ao buscar valores:", error);
+		alert("Erro ao buscar valores. Verifique o console para mais detalhes.");
+		return null;
+	    }
+	}
 
         // Função para atualizar a planilha
         async function updateCell(cell, operation) {
-            const spreadsheetId = localStorage.getItem("spreadsheetId");
-            const webAppUrl = localStorage.getItem("webAppUrl");
-            const numberInput = document.getElementById("numberInput");
-            const inputValue = parseInt(numberInput.value);
+	    const spreadsheetId = localStorage.getItem("spreadsheetId");
+	    const webAppUrl = localStorage.getItem("webAppUrl");
+	    const numberInput = document.getElementById("numberInput");
+	    const inputValue = parseInt(numberInput.value);
 
-            if (isNaN(inputValue)) {
-                alert("Por favor, insira um valor válido.");
-                return;
-            }
+	    if (isNaN(inputValue)) {
+		alert("Por favor, insira um valor válido.");
+		return;
+	    }
 
-            const amount = operation === 'add' ? inputValue : -inputValue;
+	    const amount = operation === 'add' ? inputValue : -inputValue;
 
-            const response = await fetch(`${webAppUrl}/update`, {
-                method: "POST",
-                body: JSON.stringify({ spreadsheetId, cell, amount }),
-                headers: { "Content-Type": "application/json" },
-            });
+	    try {
+		const response = await fetch(webAppUrl, {
+		    method: "POST",
+		    body: JSON.stringify({ spreadsheetId, cell, amount }),
+		    headers: { "Content-Type": "application/json" },
+		});
 
-            const result = await response.text();
-            console.log(result);
+		if (!response.ok) {
+		    throw new Error(`Erro na requisição: ${response.status}`);
+		}
 
-            numberInput.value = 0;
-            refreshValues();
-        }
+		const result = await response.text();
+		console.log(result);
+
+		numberInput.value = 0;
+		refreshValues();
+	    } catch (error) {
+		console.error("Erro ao atualizar a célula:", error);
+		alert("Erro ao atualizar a célula. Verifique o console para mais detalhes.");
+	    }
+	}
 
         // Função para atualizar os valores exibidos
         async function refreshValues() {
