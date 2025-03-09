@@ -201,34 +201,32 @@
 	}
 
         // Função para atualizar a planilha
-	 async function updateCell(cell, operation) {
-	    const spreadsheetId = localStorage.getItem("spreadsheetId");
-	    const numberInput = document.getElementById("numberInput");
-	    const inputValue = parseInt(numberInput.value);
+	async function updateCell(cell, operation) {
+	    const spreadsheetId = localStorage.getItem("spreadsheetId"); // Pega o ID da planilha
+	    const webAppUrl = localStorage.getItem("webAppUrl"); // Pega o URL do Web App
+	    const numberInput = document.getElementById("numberInput"); // Campo de entrada
+	    const inputValue = parseInt(numberInput.value); // Valor digitado
 
 	    if (isNaN(inputValue)) {
 		alert("Por favor, insira um valor válido.");
 		return;
 	    }
 
-	    const amount = operation === 'add' ? inputValue : -inputValue;
+	    const amount = operation === 'add' ? inputValue : -inputValue; // Define o valor a ser adicionado/subtraído
 
 	    try {
-		const response = await fetch("https://script.google.com/macros/s/AKfycbzyRn7SEYPLzQXOm4l-Y6oVS5xdkCltBKARMO-MRMn3-g78bhjZZT66eBO_IlEjIJXCUA/exec", {
-		    method: "POST",
-		    body: JSON.stringify({ spreadsheetId, cell, amount }),
-		    headers: { "Content-Type": "application/json" },
-		});
+		// Faz a requisição GET ao Web App, passando a célula e o valor como parâmetros
+		const response = await fetch(`${webAppUrl}?spreadsheetId=${spreadsheetId}&cell=${cell}&amount=${amount}`);
 
 		if (!response.ok) {
 		    throw new Error(`Erro na requisição: ${response.status}`);
 		}
 
-		const result = await response.text();
-		console.log(result);
+		const data = await response.json();
+		console.log(data);
 
-		numberInput.value = 0;
-		refreshValues();
+		numberInput.value = 0; // Reseta o campo de entrada
+		refreshValues(); // Atualiza os valores na interface
 	    } catch (error) {
 		console.error("Erro ao atualizar a célula:", error);
 		alert("Erro ao atualizar a célula. Verifique o console para mais detalhes.");
