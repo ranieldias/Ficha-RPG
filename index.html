@@ -20,7 +20,65 @@
 
     <!-- Popup Form -->
     <div id="popup" class="popup">
+        <div class="popup-content"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Menu with Sheet ID</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dropdown-container">
+            <select id="sheetDropdown" class="dropdown" onchange="loadSheetData()">
+                <option value="" disabled selected>Select a Sheet</option>
+            </select>
+        </div>
+        <div class="button-container">
+            <button id="addSheetBtn" onclick="openPopup()">+</button>
+        </div>
+    </div>
+
+    <!-- Popup Form -->
+    <div id="popup" class="popup">
         <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Enter Sheet ID</h2>
+            <input type="text" id="sheetIdInput" placeholder="Enter Sheet ID">
+            <button onclick="storeSheetId()">Save</button>
+        </div>
+      </div>
+
+      <div id="tableContainer">
+        <table id="infoTable">
+            <tr>
+                <td style="background-color: red; color: white;">FOR</td>
+                <td style="background-color: orange; color: white;">CON</td>
+                <td style="background-color: green; color: white;">Des</td>
+            </tr>
+            <tr>
+                <td id="H2Value"></td>
+                <td id="H3Value"></td>
+                <td id="H4Value"></td>
+            </tr>
+            <tr>
+                <td style="background-color: yellow; color: black;">HAB</td>
+                <td style="background-color: blue; color: white;">INT</td>
+                <td style="background-color: purple; color: white;">CAR</td>
+            </tr>
+            <tr>
+                <td id="H5Value"></td>
+                <td id="H6Value"></td>
+                <td id="H7Value"></td>
+            </tr>
+        </table>
+      </div>
+      
+    <script src="script.js"></script>
+</body>
+</html>
+
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Enter Sheet ID</h2>
             <input type="text" id="sheetIdInput" placeholder="Enter Sheet ID">
@@ -28,9 +86,6 @@
         </div>
     </div>
     
-    
-
-
     <script src="script.js"></script>
 </body>
 
