@@ -39,7 +39,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
-    color: #00bcd4;
+    color: white;
 }
 
 /* Table row colors adjusted for dark mode */
@@ -118,7 +118,7 @@ input[type="number"]:focus {
     font-weight: bold;
     border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .styled-button:hover {
@@ -130,13 +130,36 @@ input[type="number"]:focus {
 
 .dropdown {
     width: 100%;
-    padding: 10px 0px;
+    padding: 10px;
     font-size: 16px;
     border-radius: 10px;
     background-color: black;
     color: white;
     border: 1.5px solid #00bcd4;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
+
+/* Efeito ao passar o mouse */
+.dropdown:hover {
+    background-color: black;
+    border-color: #67D861;
+}
+
+/* Para estilizar as opções, usamos um container customizado */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Criar efeito no hover das opções */
+.dropdown-container select option {
+    background-color: black;
+    color: #67D861;
+    padding: 15px;
+}
+
+
 
 .button-container {
     display: flex;
@@ -152,7 +175,7 @@ input[type="number"]:focus {
     color: white;
     border: 1.5px solid #00bcd4;
     border-radius: 10px;
-  	transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  	transition: all 0.3s ease-in-out;
 }
 
 #addSheetBtn:hover {
