@@ -146,28 +146,6 @@ input[type="number"]:focus {
     border-color: #67D861;
 }
 
-/* Para estilizar as opções, usamos um container customizado */
-.dropdown-container {
-    position: relative;
-    display: inline-block;
-}
-
-/* Criar efeito no hover das opções */
-.dropdown-container select option {
-    background-color: black;
-    border: 1.5px solid #67D861;
-    border-radius: 10px;
-    color: white;
-    padding: 15px;
-}
-
-/* Simulando hover das opções dentro de um select personalizado */
-.dropdown-container select:hover option {
-    background-color: black;
-    color: white;
-    border 1.5px solid #67D861;
-}
-
 
 .button-container {
     display: flex;
