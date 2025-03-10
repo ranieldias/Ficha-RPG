@@ -155,10 +155,15 @@ input[type="number"]:focus {
 /* Criar efeito no hover das opções */
 .dropdown-container select option {
     background-color: black;
-    color: #67D861;
+    color: white;
     padding: 15px;
 }
 
+/* Simulando hover das opções dentro de um select personalizado */
+.dropdown-container select:hover option {
+    background-color: black;
+    border 1.5px solid #67D861;
+}
 
 
 .button-container {
