@@ -109,7 +109,8 @@ function updateStatus(sheetId) {
         });
 }
 
-function sendUpdateRequest(cell, value) {
+function sendUpdateRequest(cell, value) { 
+    // Retriving selected sheet
     const savedValue = localStorage.getItem('selectedDropdownValue');
     
     const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${savedValue}&cell=${cell}&value=${value}`;
