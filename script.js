@@ -101,6 +101,9 @@ function updateStatus(sheetId) {
         .then(data => {
             // Populate the table with the data returned from the API
             document.getElementById('statusHp').textContent = `${data.currentHp}/${data.totalHp}`;
+            document.getElementById('statusMana').textContent = `${data.currentMana}/${data.totalMana}`;
+            document.getElementById('statusEnergia').textContent = `${data.currentEnergia}/${data.totalEnergia}`;
+            document.getElementById('statusAlma').textContent = `${data.currentAlma}/${data.totalAlma}`;
 
         })
         .catch(error => {
