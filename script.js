@@ -1,7 +1,15 @@
+// Initialize the dropdown with stored sheets on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateDropdown();
+    reloadData(); // Load data on page load
+});
+
+// Function to open the popup
 function openPopup() {
     document.getElementById('popup').style.display = 'block';
 }
 
+// Function to close the popup
 function closePopup() {
     document.getElementById('popup').style.display = 'none';
 }
@@ -11,9 +19,7 @@ function storeSheetId() {
     const sheetId = document.getElementById('sheetIdInput').value;
     if (sheetId) {
         let storedSheets = JSON.parse(localStorage.getItem('sheetIds')) || [];
-        // Push the new sheet ID into the array
         storedSheets.push(sheetId);
-        // Store the updated list back to localStorage
         localStorage.setItem('sheetIds', JSON.stringify(storedSheets));
         updateDropdown();
         closePopup();
@@ -23,129 +29,106 @@ function storeSheetId() {
 // Function to update the dropdown menu based on stored sheet IDs
 function updateDropdown() {
     const dropdown = document.getElementById('sheetDropdown');
-    dropdown.innerHTML = '<option value="" disabled selected>Select a Sheet</option>'; // Reset dropdown
+    dropdown.innerHTML = '<option value="" disabled selected>Select a Sheet</option>';
     const storedSheets = JSON.parse(localStorage.getItem('sheetIds')) || [];
 
     storedSheets.forEach(sheetId => {
-        // Assume the first tab is always the first sheet and use it as the option label
-        fetchSheetTabName(sheetId, function(tabName) {
+        getTabName(sheetId, function(tabName) {
             const option = document.createElement('option');
             option.value = sheetId;
-            option.textContent = tabName; // Tab name as label
+            option.textContent = tabName;
             dropdown.appendChild(option);
         });
     });
 }
 
-// Function to fetch the first tab name from the Google Sheets API (mocked here)
-function fetchSheetTabName(sheetId, callback) {
-    // Construct the URL to call the Google Apps Script API
-    const apiUrl = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${sheetId}`;
+// Function to fetch the first tab name from the Google Sheets API
+function getTabName(sheetId, callback) {
+    const apiUrl = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?action=getTabName&spreadsheetId=${sheetId}`;
 
-    // Make an API call to get the sheet name
     fetch(apiUrl)
-        .then(response => response.json()) // Parse the JSON response
+        .then(response => response.json())
         .then(data => {
-            if (data.sheetName) {
-                // Call the callback with the actual sheet name
-                callback(data.sheetName);
+            if (data.tabName) {
+                callback(data.tabName);
             } else {
-                console.error('Sheet name not found in the response.');
+                console.error('Tab name not found in the response.');
             }
         })
         .catch(error => {
-            console.error('Error fetching sheet name:', error);
+            console.error('Error fetching tab name:', error);
         });
 }
 
+// Event listener to update the sheet data when a new sheet is selected
+document.getElementById('sheetDropdown').addEventListener('change', function() {
+    const selectedSheetId = this.value;
+    localStorage.setItem('selectedSheetId', selectedSheetId);
+    updateStatus(selectedSheetId);
+    getAttributes(selectedSheetId); // Corrected to getAttributes
+});
 
-// Function to load the selected sheet data (use as needed)
-function loadSheetData() {
-    const dropdown = document.getElementById('sheetDropdown');
-    const selectedSheetId = dropdown.value;
+// Function to load the selected sheet data 
+function reloadData() {
+    const selectedSheetId = localStorage.getItem('selectedSheetId');
     if (selectedSheetId) {
-        console.log('Selected Sheet ID:', selectedSheetId);
-        // You can add functionality to load the sheet data here if needed
+        getStatus(selectedSheetId);
+        getAttributes(selectedSheetId); // Corrected to getAttributes
     }
 }
 
-function updateSheetInfo(sheetId) {
-    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${sheetId}`;
+// Function to get the status values
+function getStatus(sheetId) {
+    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?action=getSatus&spreadsheetId=${sheetId}`; // Corrected to getSatus
 
-    // Make the API call to get the sheet data
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            // Populate the table with the data returned from the API
-            document.getElementById('forValue').textContent = data.forValue;
-            document.getElementById('conValue').textContent = data.conValue;
-            document.getElementById('desValue').textContent = data.desValue;
-
-            document.getElementById('habValue').textContent = data.habValue;
-            document.getElementById('intValue').textContent = data.intValue;
-            document.getElementById('carValue').textContent = data.carValue;
-        })
-        .catch(error => {
-            console.error('Error fetching sheet data:', error);
-        });
-}
-
-function updateStatus(sheetId) {
-    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${sheetId}`;
-
-    // Make the API call to get the sheet data (Status)
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            // Populate the table with the data returned from the API
             document.getElementById('statusHp').textContent = `${data.currentHp}/${data.totalHp}`;
             document.getElementById('statusMana').textContent = `${data.currentMana}/${data.totalMana}`;
             document.getElementById('statusEnergia').textContent = `${data.currentEnergia}/${data.totalEnergia}`;
             document.getElementById('statusAlma').textContent = `${data.currentAlma}/${data.totalAlma}`;
-
         })
         .catch(error => {
-            console.error('Error fetching sheet data:', error);
+            console.error('Error fetching status data:', error);
         });
 }
 
-function sendUpdateRequest(cell, value) { 
-    // Retriving selected sheet
-    const savedValue = localStorage.getItem('selectedSheetId');
-    
-    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${savedValue}&cell=${cell}&value=${value}`;
-
-    // Make the API call to get the sheet data (Status)
-    fetch(url)
-    .finally(() => {
-        updateStatus(savedValue); // Executa após o fetch terminar, independentemente do resultado
-    });
-    
-}
-
-// Initialize the dropdown with stored sheets on page load
-document.addEventListener('DOMContentLoaded', function() {
-    updateDropdown();
-});
-
-document.getElementById('sheetDropdown').addEventListener('change', function() {
-    const selectedSheetId = this.value;
-    localStorage.setItem('selectedSheetId', selectedSheetId);
-    updateSheetInfo(selectedSheetId);
-    updateStatus(selectedSheetId);
-});
-
+// Event listener to add or subtract values from the status
 document.querySelectorAll('.adjust-button').forEach(button => {
     button.addEventListener('click', function() {
-        const cell = this.getAttribute('data-cell'); // Get the target cell
-        const isIncrement = this.textContent === '+'; // Check if it's "+" or "-"
-        const inputValue = parseInt(document.getElementById('inputValue').value) || 1; // Get input value, default to 1
-        
-        const value = isIncrement ? -inputValue : inputValue; // "+" decreases, "-" increases
-
-        sendUpdateRequest(cell, value); // Function to send the request
-
-        document.getElementById('inputValue').value = 1; // Reset input field to 1 after sending
+        const cell = this.getAttribute('data-cell');
+        const isIncrement = this.textContent === '+';
+        const inputValue = parseInt(document.getElementById('inputValue').value) || 1;
+        const value = isIncrement ? -inputValue : inputValue;
+        updateStatus(cell, value);
+        document.getElementById('inputValue').value = 1;
     });
 });
 
+function updateStatus(cell, value) {
+    const selectedSheetId = localStorage.getItem('selectedSheetId');
+    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?action=updateStatus&spreadsheetId=${selectedSheetId}&cell=${cell}&value=${value}`;
+
+    fetch(url).finally(() => {
+        updateStatus(selectedSheetId);
+    });
+}
+
+function getAttributes(sheetId) {
+    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?action=getAttributes&spreadsheetId=${sheetId}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('strengthValue').textContent = data.strengthValue;
+            document.getElementById('constitutionValue').textContent = data.constitutionValue;
+            document.getElementById('dexterityValue').textContent = data.dexterityValue;
+            document.getElementById('abilityValue').textContent = data.abilityValue;
+            document.getElementById('intelligenceValue').textContent = data.intelligenceValue;
+            document.getElementById('charismaValue').textContent = data.charismaValue;
+        })
+        .catch(error => {
+            console.error('Error fetching attributes data:', error);
+        });
+}

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  	<!-- Selector Container -->
     <div class="container">
         <div class="dropdown-container">
             <select id="sheetDropdown" class="dropdown" onchange="loadSheetData()">
@@ -19,94 +18,74 @@
         </div>
     </div>
 
-    <!-- Popup Form -->
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Enter Sheet ID</h2>
             <div>
-            <input type="text" id="sheetIdInput" placeholder="Enter Sheet ID" style="width: 60%; height: 38px">
-            <button class="styled-button" style="width: 30%; height: 50px" onclick="storeSheetId()">Save</button>
+                <input type="text" id="sheetIdInput" placeholder="Enter Sheet ID" style="width: 60%; height: 38px">
+                <button class="styled-button" style="width: 30%; height: 50px" onclick="storeSheetId()">Save</button>
             </div>
         </div>
     </div>
- 
-    <!-- Number Field Container -->
+    
     <div id="fieldContainer">
-      	<span style="font-weight: bold;">Digite um valor: </span>
-        <!-- Campo de texto para inserir o número -->
+        <span style="font-weight: bold;">Digite um valor: </span>
         <input type="number" id="inputValue" value="1" min="1"  style="width:100px">
     </div>
-      
+        
     <div id="statusContainer">
-    <!-- Hp Container -->
-    <div class="controlsContainer" >
-      
-        <!-- Texto fixo -->
-        <span style="font-weight: bold;">HP</span>
+        <div class="controlsContainer">
+            
+            <span style="font-weight: bold;">HP</span>
 
-        <div class="far-right"> 
-            <!-- Texto variável ${current}/${total} -->
-            <span id="statusHp" style="font-weight: bold;">0/0</span>
+            <div class="far-right"> 
+                <span id="statusHp" style="font-weight: bold;">0/0</span>
 
-            <!-- Botões "+" e "-" -->
-            <button class="styled-button adjust-button" data-cell="H13">+</button>
-            <button class="styled-button adjust-button" data-cell="H13">-</button>
+                <button class="styled-button adjust-button" data-cell="H13">+</button>
+                <button class="styled-button adjust-button" data-cell="H13">-</button>
+            </div>
         </div>
-    </div>
-    
-    <!-- Mana Container -->
-    <div class="controlsContainer" >
-      
-        <!-- Texto fixo -->
-        <span style="font-weight: bold;">Mana</span>
+        
+        <div class="controlsContainer">
+            
+            <span style="font-weight: bold;">Mana</span>
 
-        <div class="far-right"> 
-            <!-- Texto variável ${current}/${total} -->
-            <span id="statusMana" style="font-weight: bold;">0/0</span>
+            <div class="far-right"> 
+                <span id="statusMana" style="font-weight: bold;">0/0</span>
 
-            <!-- Botões "+" e "-" -->
-            <button class="styled-button adjust-button" data-cell="H15">+</button>
-            <button class="styled-button adjust-button" data-cell="H15">-</button>
+                <button class="styled-button adjust-button" data-cell="H15">+</button>
+                <button class="styled-button adjust-button" data-cell="H15">-</button>
+            </div>
         </div>
-    </div>
-    
-    <!-- Energia Container -->
-    <div class="controlsContainer" >
-      
-        <!-- Texto fixo -->
-        <span style="font-weight: bold;">Energia</span>
+        
+        <div class="controlsContainer">
+            
+            <span style="font-weight: bold;">Energia</span>
 
-        <div class="far-right"> 
-            <!-- Texto variável ${current}/${total} -->
-            <span id="statusEnergia" style="font-weight: bold;">0/0</span>
+            <div class="far-right"> 
+                <span id="statusEnergia" style="font-weight: bold;">0/0</span>
 
-            <!-- Botões "+" e "-" -->
-            <button class="styled-button adjust-button" data-cell="H16">+</button>
-            <button class="styled-button adjust-button" data-cell="H16">-</button>
+                <button class="styled-button adjust-button" data-cell="H16">+</button>
+                <button class="styled-button adjust-button" data-cell="H16">-</button>
+            </div>
         </div>
-    </div>
-    
-    <!-- Alma Container -->
-    <div class="controlsContainer" >
-      
-        <!-- Texto fixo -->
-        <span style="font-weight: bold;">Alma</span>
+        
+        <div class="controlsContainer">
+            
+            <span style="font-weight: bold;">Alma</span>
 
-        <div class="far-right"> 
-            <!-- Texto variável ${current}/${total} -->
-            <span id="statusAlma" style="font-weight: bold;">0/0</span>
+            <div class="far-right"> 
+                <span id="statusAlma" style="font-weight: bold;">0/0</span>
 
-            <!-- Botões "+" e "-" -->
-            <button class="styled-button adjust-button" data-cell="H14">+</button>
-            <button class="styled-button adjust-button" data-cell="H14">-</button>
+                <button class="styled-button adjust-button" data-cell="H14">+</button>
+                <button class="styled-button adjust-button" data-cell="H14">-</button>
+            </div>
         </div>
+
     </div>
 
-   </div>
 
-
-    <!-- Tabela Container -->
     <div id="tableContainer">
         <table id="infoTable">
             <tr>
@@ -115,9 +94,9 @@
                 <td style="font-weight: bold; color: white;">DES</td>
             </tr>
             <tr>
-                <td id="forValue"></td>
-                <td id="conValue"></td>
-                <td id="desValue"></td>
+                <td id="strengthValue"></td>
+                <td id="constitutionValue"></td>
+                <td id="dexterityValue"></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; color: white;">HAB</td>
@@ -125,9 +104,9 @@
                 <td style="font-weight: bold; color: white;">CAR</td>
             </tr>
             <tr>
-                <td id="habValue"></td>
-                <td id="intValue"></td>
-                <td id="carValue"></td>
+                <td id="abilityValue"></td>
+                <td id="intelligenceValue"></td>
+                <td id="charismaValue"></td>
             </tr>
         </table>
     </div>
@@ -135,4 +114,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
