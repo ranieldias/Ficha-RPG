@@ -31,6 +31,7 @@ function updateDropdown() {
     const dropdown = document.getElementById('sheetDropdown');
     dropdown.innerHTML = '<option value="" disabled selected>Select a Sheet</option>';
     const storedSheets = JSON.parse(localStorage.getItem('sheetIds')) || [];
+    const selectedSheetId = localStorage.getItem('selectedSheetId'); // Get the stored selected ID
 
     storedSheets.forEach(sheetId => {
         getTabName(sheetId, function(tabName) {
@@ -38,6 +39,11 @@ function updateDropdown() {
             option.value = sheetId;
             option.textContent = tabName;
             dropdown.appendChild(option);
+
+            // Set the selected option if it matches the stored ID
+            if (selectedSheetId && sheetId === selectedSheetId) {
+                option.selected = true;
+            }
         });
     });
 }
