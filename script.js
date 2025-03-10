@@ -64,7 +64,7 @@ function getTabName(sheetId, callback) {
 document.getElementById('sheetDropdown').addEventListener('change', function() {
     const selectedSheetId = this.value;
     localStorage.setItem('selectedSheetId', selectedSheetId);
-    updateStatus(selectedSheetId);
+    getStatus(selectedSheetId);
     getAttributes(selectedSheetId); // Corrected to getAttributes
 });
 
@@ -111,7 +111,7 @@ function updateStatus(cell, value) {
     const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?action=updateStatus&spreadsheetId=${selectedSheetId}&cell=${cell}&value=${value}`;
 
     fetch(url).finally(() => {
-        updateStatus(selectedSheetId);
+        getStatus(selectedSheetId);
     });
 }
 
