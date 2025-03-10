@@ -116,8 +116,11 @@ function sendUpdateRequest(cell, value) {
     const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${savedValue}&cell=${cell}&value=${value}`;
 
     // Make the API call to get the sheet data (Status)
-    fetch(url);
-    updateStatus(savedValue);
+    fetch(url)
+    .finally(() => {
+        updateStatus(savedValue); // Executa após o fetch terminar, independentemente do resultado
+    });
+    
 }
 
 // Initialize the dropdown with stored sheets on page load
