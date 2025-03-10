@@ -110,12 +110,14 @@ function updateStatus(sheetId) {
 }
 
 function sendUpdateRequest(cell, value) {
-    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${selectedSheetId}&cell=${cell}&value=${value}`;
+    const savedValue = localStorage.getItem('selectedDropdownValue');
+    
+    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${savedValue}&cell=${cell}&value=${value}`;
 
     // Make the API call to get the sheet data (Status)
     fetch(url);
-    updateSheetInfo(selectedSheetId);
-    updateStatus(selectedSheetId);
+    updateSheetInfo(savedValue);
+    updateStatus(savedValue);
 }
 
 // Initialize the dropdown with stored sheets on page load
@@ -125,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('sheetDropdown').addEventListener('change', function() {
     const selectedSheetId = this.value;
+    localStorage.setItem('selectedSheetId', selectedSheetId);
     updateSheetInfo(selectedSheetId);
     updateStatus(selectedSheetId);
 });
