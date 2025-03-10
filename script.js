@@ -95,7 +95,7 @@ function updateSheetInfo(sheetId) {
 function updateStatus(sheetId) {
     const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${sheetId}`;
 
-    // Make the API call to get the sheet data
+    // Make the API call to get the sheet data (Status)
     fetch(url)
         .then(response => response.json())
         .then(data => {
