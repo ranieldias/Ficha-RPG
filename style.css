@@ -26,7 +26,7 @@ body {
 
 .dropdown {
     width: 100%;
-    padding: 10px;
+    padding: 10px 30px 10px 10px;
     font-size: 16px;
     border-radius: 10px;
     background-color: black;
@@ -34,12 +34,19 @@ body {
     border: 1.5px solid #00bcd4;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("assets/dropDownArrow.svg"); /* Updated path to SVG */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
 }
 
-/* Efeito ao passar o mouse */
 .dropdown:hover {
     background-color: black;
     border-color: #67D861;
+    /* optional hover change */
+    background-image: url("assets/dropDownArrowHover.svg");
 }
 
 .button-container {
