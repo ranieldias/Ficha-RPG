@@ -38,13 +38,14 @@
         <input type="number" id="inputValue" value="1" min="1"  style="width:100px">
     </div>
       
-    <!-- Nova div para os elementos -->
-    <div id="controlsContainer" >
+    <div id="statusContainer">
+    <!-- Hp Container -->
+    <div class="controlsContainer" >
       
         <!-- Texto fixo -->
-        <span id="fixedText" style="font-weight: bold;">HP</span>
+        <span style="font-weight: bold;">HP</span>
 
-        <div id="far-right"> 
+        <div class="far-right"> 
             <!-- Texto variável ${current}/${total} -->
             <span id="statusHp" style="font-weight: bold;">0/0</span>
 
@@ -53,6 +54,56 @@
             <button class="styled-button" data-cell="H13">-</button>
         </div>
     </div>
+    
+    <!-- Mana Container -->
+    <div class="controlsContainer" >
+      
+        <!-- Texto fixo -->
+        <span style="font-weight: bold;">Mana</span>
+
+        <div class="far-right"> 
+            <!-- Texto variável ${current}/${total} -->
+            <span id="statusMana" style="font-weight: bold;">0/0</span>
+
+            <!-- Botões "+" e "-" -->
+            <button class="styled-button" data-cell="H13">+</button>
+            <button class="styled-button" data-cell="H13">-</button>
+        </div>
+    </div>
+    
+    <!-- Energia Container -->
+    <div class="controlsContainer" >
+      
+        <!-- Texto fixo -->
+        <span style="font-weight: bold;">Energia</span>
+
+        <div class="far-right"> 
+            <!-- Texto variável ${current}/${total} -->
+            <span id="statusEnergia" style="font-weight: bold;">0/0</span>
+
+            <!-- Botões "+" e "-" -->
+            <button class="styled-button" data-cell="H13">+</button>
+            <button class="styled-button" data-cell="H13">-</button>
+        </div>
+    </div>
+    
+    <!-- Alma Container -->
+    <div class="controlsContainer" >
+      
+        <!-- Texto fixo -->
+        <span style="font-weight: bold;">Alma</span>
+
+        <div class="far-right"> 
+            <!-- Texto variável ${current}/${total} -->
+            <span id="statusAlma" style="font-weight: bold;">0/0</span>
+
+            <!-- Botões "+" e "-" -->
+            <button class="styled-button" data-cell="H13">+</button>
+            <button class="styled-button" data-cell="H13">-</button>
+        </div>
+    </div>
+
+   </div>
 
     <!-- Table Container -->
     <div id="tableContainer">
