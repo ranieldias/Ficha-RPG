@@ -84,7 +84,7 @@ function updateSheetInfo(sheetId) {
             document.getElementById('desValue').textContent = data.desValue;
 
             document.getElementById('habValue').textContent = data.habValue;
-            document.getElementById('intValue').textContent = data.intvalue;
+            document.getElementById('intValue').textContent = data.intValue;
             document.getElementById('carValue').textContent = data.carValue;
         })
         .catch(error => {

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dropdown Menu with Sheet ID</title>
+    <title>Ficha RPG</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  	<!-- Selector Container -->
     <div class="container">
         <div class="dropdown-container">
             <select id="sheetDropdown" class="dropdown" onchange="loadSheetData()">
@@ -26,33 +27,57 @@
             <input type="text" id="sheetIdInput" placeholder="Enter Sheet ID">
             <button onclick="storeSheetId()">Save</button>
         </div>
-      </div>
+    </div>
+ 
+    <!-- Number Field Container -->
+    <div id="fieldContainer">
+      	<span style="font-weight: bold;">Digite um valor: </span>
+        <!-- Campo de texto para inserir o número -->
+        <input type="number" id="inputValue" value="1" min="1"  style="width:100px">
+    </div>
+      
+    <!-- Nova div para os elementos -->
+    <div id="controlsContainer" >
+      
+        <!-- Texto fixo -->
+        <span id="fixedText" style="font-weight: bold;">HP</span>
 
-      <div id="tableContainer">
+        <div id="far-right"> 
+            <!-- Texto variável ${current}/${total} -->
+            <span id="statusText" style="font-weight: bold;">0/0</span>
+
+            <!-- Botões "+" e "-" -->
+            <button class="styled-button" data-cell="H13">+</button>
+            <button class="styled-button" data-cell="H13">-</button>
+        </div>
+    </div>
+
+    <!-- Table Container -->
+    <div id="tableContainer">
         <table id="infoTable">
             <tr>
-                <td style="background-color: red;">FOR</td>
-                <td style="background-color: orange;">CON</td>
-                <td style="background-color: green;">Des</td>
+                <td style="font-weight: bold; color: white;">FOR</td>
+                <td style="font-weight: bold; color: white;">CON</td>
+                <td style="font-weight: bold; color: white;">DES</td>
             </tr>
             <tr>
-                <td id="forValue"></td>
-                <td id="conValue"></td>
-                <td id="desValue"></td>
+                <td id="H2Value"></td>
+                <td id="H3Value"></td>
+                <td id="H4Value"></td>
             </tr>
             <tr>
-                <td style="background-color: yellow;">HAB</td>
-                <td style="background-color: blue;">INT</td>
-                <td style="background-color: purple;">CAR</td>
+                <td style="font-weight: bold; color: white;">HAB</td>
+                <td style="font-weight: bold; color: white;">INT</td>
+                <td style="font-weight: bold; color: white;">CAR</td>
             </tr>
             <tr>
-                <td id="habValue"></td>
-                <td id="intValue"></td>
-                <td id="carValue"></td>
+                <td id="H5Value"></td>
+                <td id="H6Value"></td>
+                <td id="H7Value"></td>
             </tr>
         </table>
-      </div>
-      
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
