@@ -92,15 +92,32 @@ function updateSheetInfo(sheetId) {
         });
 }
 
+updateStatus(sheetId) {
+    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${sheetId}`;
+
+    // Make the API call to get the sheet data
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Populate the table with the data returned from the API
+            document.getElementById('statusHp').textContent = `${data.currentHp}/${data.totalHp}`;
+
+        })
+        .catch(error => {
+            console.error('Error fetching sheet data:', error);
+        });
+}
 
 // Initialize the dropdown with stored sheets on page load
 document.addEventListener('DOMContentLoaded', function() {
     updateDropdown();
+    
 });
 
 document.getElementById('sheetDropdown').addEventListener('change', function() {
     const selectedSheetId = this.value;
     updateSheetInfo(selectedSheetId);
+    updateStatus(selectedSheetId);
 });
 
 
