@@ -110,7 +110,7 @@ function updateStatus(sheetId) {
 }
 
 function sendUpdateRequest(cell, value) { 
-    // Retriving selected sheet
+    // Retriving selected sheet (right this time)
     const savedValue = localStorage.getItem('selectedSheetId');
     document.getElementById('retrieve').textContent = savedVal;
     
