@@ -109,10 +109,18 @@ function updateStatus(sheetId) {
         });
 }
 
+function sendUpdateRequest(cell, value) {
+    const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${selectedSheetId}&cell=${cell}&value=${value}`;
+
+    // Make the API call to get the sheet data (Status)
+    fetch(url);
+    updateSheetInfo(selectedSheetId);
+    updateStatus(selectedSheetId);
+}
+
 // Initialize the dropdown with stored sheets on page load
 document.addEventListener('DOMContentLoaded', function() {
     updateDropdown();
-    
 });
 
 document.getElementById('sheetDropdown').addEventListener('change', function() {
@@ -121,4 +129,17 @@ document.getElementById('sheetDropdown').addEventListener('change', function() {
     updateStatus(selectedSheetId);
 });
 
+document.querySelectorAll('.adjust-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const cell = this.getAttribute('data-cell'); // Get the target cell
+        const isIncrement = this.textContent === '+'; // Check if it's "+" or "-"
+        const inputValue = parseInt(document.getElementById('inputValue').value) || 1; // Get input value, default to 1
+        
+        const value = isIncrement ? -inputValue : inputValue; // "+" decreases, "-" increases
+
+        sendUpdateRequest(cell, value); // Function to send the request
+
+        document.getElementById('inputValue').value = 1; // Reset input field to 1 after sending
+    });
+});
 
