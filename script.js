@@ -112,7 +112,6 @@ function updateStatus(sheetId) {
 function sendUpdateRequest(cell, value) { 
     // Retriving selected sheet (right this time)
     const savedValue = localStorage.getItem('selectedSheetId');
-    document.getElementById('retrieve').textContent = savedValue;
     
     const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${savedValue}&cell=${cell}&value=${value}`;
 
