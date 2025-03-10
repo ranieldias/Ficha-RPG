@@ -112,12 +112,12 @@ function updateStatus(sheetId) {
 function sendUpdateRequest(cell, value) { 
     // Retriving selected sheet
     const savedValue = localStorage.getItem('selectedDropdownValue');
+    document.getElementById('retrieve').textContent = savedValue;
     
     const url = `https://script.google.com/macros/s/AKfycbx727Wws4Axs7qRAiJ9wHV8GmgiMo8SV_qhqjRvvsJUxtcpWEnjR7EHE3e5TB-oxtQLiA/exec?spreadsheetId=${savedValue}&cell=${cell}&value=${value}`;
 
     // Make the API call to get the sheet data (Status)
     fetch(url);
-    updateSheetInfo(savedValue);
     updateStatus(savedValue);
 }
 
