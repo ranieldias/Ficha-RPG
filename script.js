@@ -233,6 +233,22 @@ function updateDropdown() {
     });
 }
 
+// Event Listener to update data when the page is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    generateStatusControls();
+    generateAttributesTable();
+    updateDropdown();
+    reloadData();
+});
+
+// Event listener to update the sheet data when a new sheet is selected
+document.getElementById('sheetDropdown').addEventListener('change', function() {
+    const selectedSheetId = this.value;
+    localStorage.setItem('selectedSheetId', selectedSheetId);
+    getStatus(selectedSheetId);
+    getAttributes(selectedSheetId); 
+});
+
 // Event listener to clicks on styled buttons
 const styledButtons = document.querySelectorAll('.styled-button');
 styledButtons.forEach(button => {
@@ -258,18 +274,5 @@ document.querySelectorAll('.adjust-button').forEach(button => {
     });
 });
 
-// Event listener to update the sheet data when a new sheet is selected
-document.getElementById('sheetDropdown').addEventListener('change', function() {
-    const selectedSheetId = this.value;
-    localStorage.setItem('selectedSheetId', selectedSheetId);
-    getStatus(selectedSheetId);
-    getAttributes(selectedSheetId); 
-});
 
-// Event Listener to update data when the page is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    generateStatusControls();
-    generateAttributesTable();
-    updateDropdown();
-    reloadData();
-});
+
