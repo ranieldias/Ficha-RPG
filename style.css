@@ -213,11 +213,10 @@
     display: block; /* Make sure the image is a block element */
     }
   
-    .styled-button.touched {
-        background-color: #00bcd4;
+    .styled-button.clicked {
+        background-color: #00bcd4; /* Change the background color */
         color: black;
-        border: 1.5px solid #00bcd4;
-        transform: scale(1.1);
+        transform: scale(0.9);
     }
   
   .tableContainer {

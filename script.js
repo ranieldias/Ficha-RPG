@@ -1,20 +1,17 @@
+function buttonClicked(button) {
+    button.classList.add('clicked'); // Add the "clicked" class
+
+    setTimeout(() => {
+        button.classList.remove('clicked'); // Remove the class after 500ms
+    }, 200);
+}
+
 const statusData = [
     { label: "HP", id: "statusHp", dataCell: "H13" },
     { label: "Mana", id: "statusMana", dataCell: "H15" },
     { label: "Energia", id: "statusEnergia", dataCell: "H16" },
     { label: "Alma", id: "statusAlma", dataCell: "H14" },
   ];
-
-  const buttons = document.querySelectorAll('.styled-button');
-
-buttons.forEach(button => {
-    button.addEventListener('touchstart', () => {
-        button.classList.add('touched');
-        setTimeout(() => {
-            button.classList.remove('touched');
-        }, 500);
-    });
-});
   
   const statusContainer = document.getElementById("statusContainer");
   
