@@ -14,7 +14,7 @@ function generateStatusControls() {
     controlsContainer.classList.add("controlsContainer");
 
     const labelDiv = document.createElement("div");
-    labelDiv.classList.add("far-right");
+    labelDiv.classList.add("rowContainer");
     labelDiv.style.fontWeight = "bold";
     labelDiv.textContent = status.label;
 
@@ -30,7 +30,7 @@ function generateStatusControls() {
     labelDiv.appendChild(dotsContainer);
 
     const farRightDiv = document.createElement("div");
-    farRightDiv.classList.add("far-right");
+    farRightDiv.classList.add("rowContainer");
 
     const statusSpan = document.createElement("span");
     statusSpan.id = status.id;

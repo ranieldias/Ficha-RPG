@@ -14,7 +14,7 @@
             </select>
         </div>
         <div class="button-container">
-            <button id="addSheetBtn" onclick="openPopup()">+</button>
+            <button class="styled-button" onclick="openPopup()">+</button>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
         <div class="popup-content">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Enter Sheet ID</h2>
-            <div>
+            <div class="rowContainer">
                 <input type="text" id="sheetIdInput" placeholder="Enter Sheet ID" style="width: 60%; height: 38px">
                 <button class="styled-button" style="width: 30%; height: 50px" onclick="storeSheetId()">Save</button>
             </div>
@@ -36,7 +36,7 @@
         
     <div id="statusContainer">
         <div class="controlsContainer">
-            <div class="far-right">
+            <div class="rowContainer">
             <span style="font-weight: bold;">Imunológico</span>
 
             <div class="dots-container" id="dotsLoad">
@@ -48,7 +48,7 @@
             </div>
             </div>
 
-            <div class="far-right"> 
+            <div class="rowContainer"> 
                 
                 <span style="font-weight: bold;">0+2+2+3</span>
 

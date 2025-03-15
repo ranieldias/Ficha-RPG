@@ -64,25 +64,6 @@ body {
     align-items: center;
 }
 
-#addSheetBtn {
-    padding: var(--default-padding) 20px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: black;
-    color: white;
-    border: var(--border-width) solid var(--main-color);
-    border-radius: var(--roundness);
-    transition: all 0.3s ease-in-out;
-}
-
-#addSheetBtn:hover {
-    background-color: var(--main-color);
-    color: black;
-    border: var(--border-width) solid var(--main-color);
-    transform: scale(1.1);
-}
-
 .popup {
     display: none;
     position: fixed;
@@ -183,7 +164,7 @@ input[type="number"]:focus {
     border-bottom: none;
 }
 
-.far-right {
+.rowContainer {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -191,32 +172,32 @@ input[type="number"]:focus {
     gap: 10px;
     width: auto;
 }
+
 .styled-button {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
     width: 50px;
     background-color: black;
     color: white;
-    border: 1.5px solid #00bcd4;
+    border: 1.5px solid var(--main-color);
+    border-radius: var(--roundness);
     padding: 10px 15px;
     margin: 2px;
     font-size: 16px;
     font-weight: bold;
-    border-radius: var(--roundness);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    transition: all 0.2s ease-in-out;
-    display: flex; /* Make the button a flex container */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
-
-.styled-button img { /* Target the image inside the button */
-    display: block; /* Make sure the image is a block element */
+    transition: all 0.2s ease-in-out; 
 }
 
 .styled-button.clicked {
-    background-color: #00bcd4; /* Change the background color */
-    color: black;
+    background-color: #00bcd4;
     transform: scale(0.9);
+}
+
+.styled-button img {
+    display: block;
 }
 
 .dots-container {
