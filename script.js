@@ -105,6 +105,9 @@ function generateAttributesTable() {
     tableContainer.appendChild(table);
 }
 
+generateStatusControls();
+generateAttributesTable();
+
 // Function to show and hide the loading animation
 function showLoadingAnimation(element) {
     document.getElementById(element).style.display = 'flex';
@@ -235,8 +238,6 @@ function updateDropdown() {
 
 // Event Listener to update data when the page is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    generateStatusControls();
-    generateAttributesTable();
     updateDropdown();
     reloadData();
 });
