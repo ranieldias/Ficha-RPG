@@ -1,3 +1,59 @@
+const statusData = [
+    { label: "HP", id: "statusHp", dataCell: "H13" },
+    { label: "Mana", id: "statusMana", dataCell: "H15" },
+    { label: "Energia", id: "statusEnergia", dataCell: "H16" },
+    { label: "Alma", id: "statusAlma", dataCell: "H14" },
+  ];
+
+  const buttons = document.querySelectorAll('.styled-button');
+
+buttons.forEach(button => {
+    button.addEventListener('touchstart', () => {
+        button.classList.add('touched');
+        setTimeout(() => {
+            button.classList.remove('touched');
+        }, 500);
+    });
+});
+  
+  const statusContainer = document.getElementById("statusContainer");
+  
+  statusData.forEach((status) => {
+    const controlsContainer = document.createElement("div");
+    controlsContainer.classList.add("controlsContainer");
+  
+    const labelSpan = document.createElement("span");
+    labelSpan.style.fontWeight = "bold";
+    labelSpan.textContent = status.label;
+  
+    const farRightDiv = document.createElement("div");
+    farRightDiv.classList.add("far-right");
+  
+    const statusSpan = document.createElement("span");
+    statusSpan.id = status.id;
+    statusSpan.style.fontWeight = "bold";
+    statusSpan.textContent = "0/0";
+  
+    const plusButton = document.createElement("button");
+    plusButton.classList.add("styled-button", "adjust-button");
+    plusButton.dataset.cell = status.dataCell;
+    plusButton.textContent = "+";
+  
+    const minusButton = document.createElement("button");
+    minusButton.classList.add("styled-button", "adjust-button");
+    minusButton.dataset.cell = status.dataCell;
+    minusButton.textContent = "-";
+  
+    farRightDiv.appendChild(statusSpan);
+    farRightDiv.appendChild(plusButton);
+    farRightDiv.appendChild(minusButton);
+  
+    controlsContainer.appendChild(labelSpan);
+    controlsContainer.appendChild(farRightDiv);
+  
+    statusContainer.appendChild(controlsContainer);
+  });
+
 // Initialize the dropdown with stored sheets on page load
 document.addEventListener('DOMContentLoaded', function() {
     updateDropdown();
