@@ -6,193 +6,192 @@
     --expansion: 95%;
     --border-width: 1.5px;
     --default-padding: 10px;
-  }
-  
-  body {
-      font-family: Arial, sans-serif;
-      margin: 0 auto;
-      padding: 20px;
-      gap: 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      max-width: 450px;
-      height: 100vh;
-      background-color: var(--bg-color);
-      color: white;
-  }
-  
-  .container {
-      display: flex;
-      gap: 10px;
-      justify-content: space-between;
-      align-items: center;
-      width: var(--expansion);
-  }
-  
-  .dropdown-container {
-      width: 100%;
-  }
-  
-  .dropdown {
-      width: 100%;
-      padding: var(--default-padding) 30px var(--default-padding) var(--default-padding);
-      font-size: 16px;
-      border-radius: var(--roundness);
-      background-color: black;
-      color: white;
-      border: var(--border-width) solid var(--main-color);
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      appearance: none;
-      -webkit-appearance: none;
-      background-image: url("assets/dropDownArrow.svg");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      background-size: 12px;
-  }
-  
-  .dropdown:hover {
-      background-color: black;
-      border-color: var(--second-color);
-      background-image: url("assets/dropDownArrowHover.svg");
-  }
-  
-  .button-container {
-      display: flex;
-      align-items: center;
-  }
-  
-  #addSheetBtn {
-      padding: var(--default-padding) 20px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      background-color: black;
-      color: white;
-      border: var(--border-width) solid var(--main-color);
-      border-radius: var(--roundness);
-      transition: all 0.3s ease-in-out;
-  }
-  
-  #addSheetBtn:hover {
-      background-color: var(--main-color);
-      color: black;
-      border: var(--border-width) solid var(--main-color);
-      transform: scale(1.1);
-  }
-  
-  .popup {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.6);
-  }
-  
-  .popup-content {
-      background-color: black;
-      margin: 15% auto;
-      padding: 20px;
-      border: var(--border-width) solid var(--main-color);
-      border-radius: var(--roundness);
-      width: 70%;
-      color: white;
-      position: relative;
-  }
-  
-  input[type="text"] {
-      background-color: black;
-      color: white;
-      border: var(--border-width) solid var(--main-color);
-      border-radius: var(--roundness);
-      padding: 5px;
-      outline: none;
-  }
-  
-  input[type="text"]:focus {
-      border-color: var(--second-color);
-  }
-  
-  .close-btn {
-      color: white;
-      font-size: 28px;
-      font-weight: bold;
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      border-radius: var(--roundness);
-  }
-  
-  .close-btn:hover,
-  .close-btn:focus {
-      color: var(--main-color);
-      text-decoration: none;
-      cursor: pointer;
-  }
-  
-  #fieldContainer {
-      display: flex;
-      justify-content: space-between;
-      width: var(--expansion);
-      padding: 2px 10px;
-      align-items: center;
-  }
-  
-  input[type="number"] {
-      background-color: black;
-      color: white;
-      border: var(--border-width) solid var(--main-color);
-      border-radius: var(--roundness);
-      padding: 5px;
-      outline: none;
-  }
-  
-  input[type="number"]:focus {
-      border-color: var(--second-color);
-  }
-  
-  #statusContainer {
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0px; /* Remove gap between containers */
+    align-items: center;
+    max-width: 450px;
+    height: 100vh;
+    background-color: var(--bg-color);
+    color: white;
+}
+
+.container {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--expansion);
+}
+
+.dropdown-container {
+    width: 100%;
+}
+
+.dropdown {
+    width: 100%;
+    padding: var(--default-padding) 30px var(--default-padding) var(--default-padding);
+    font-size: 16px;
+    border-radius: var(--roundness);
+    background-color: black;
+    color: white;
+    border: var(--border-width) solid var(--main-color);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("assets/dropDownArrow.svg");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+.dropdown:hover {
+    background-color: black;
+    border-color: var(--second-color);
+    background-image: url("assets/dropDownArrowHover.svg");
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+#addSheetBtn {
+    padding: var(--default-padding) 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border: var(--border-width) solid var(--main-color);
+    border-radius: var(--roundness);
+    transition: all 0.3s ease-in-out;
+}
+
+#addSheetBtn:hover {
+    background-color: var(--main-color);
+    color: black;
+    border: var(--border-width) solid var(--main-color);
+    transform: scale(1.1);
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popup-content {
+    background-color: black;
+    margin: 15% auto;
+    padding: 20px;
+    border: var(--border-width) solid var(--main-color);
+    border-radius: var(--roundness);
+    width: 70%;
+    color: white;
+    position: relative;
+}
+
+input[type="text"] {
+    background-color: black;
+    color: white;
+    border: var(--border-width) solid var(--main-color);
+    border-radius: var(--roundness);
+    padding: 5px;
+    outline: none;
+}
+
+input[type="text"]:focus {
+border-color: var(--second-color);
+}
+
+.close-btn {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border-radius: var(--roundness);
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--main-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#fieldContainer {
+    display: flex;
+    justify-content: space-between;
+    width: var(--expansion);
+    padding: 2px 10px;
+    align-items: center;
+}
+
+input[type="number"] {
+    background-color: black;
+    color: white;
+    border: var(--border-width) solid var(--main-color);
+    border-radius: var(--roundness);
+    padding: 5px;
+    outline: none;
+}
+
+input[type="number"]:focus {
+    border-color: var(--second-color);
+}
+
+#statusContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0px;
     align-items: center;
     width: 95%;
-    border: 1.5px solid var(--main-color); /* Add a general border */
+    border: 1.5px solid var(--main-color);
     border-radius: var(--roundness);
-    overflow: hidden; /* Prevent border overlap */
-  }
-  
-  .controlsContainer {
+    overflow: hidden;
+}
+
+.controlsContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; /* Full width */
+    width: 100%;
     padding: 5px 10px;
     box-sizing: border-box;
-    border-bottom: 1.5px solid var(--main-color); /* Add bottom border */
-  }
-  
-  .controlsContainer:last-child {
-    border-bottom: none; /* Remove bottom border from last container */
-  }
-  
-  .far-right {
+    border-bottom: 1.5px solid var(--main-color);
+}
+
+.controlsContainer:last-child {
+    border-bottom: none;
+}
+
+.far-right {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     gap: 10px;
     width: auto;
-    }
-
-    .styled-button {
+}
+.styled-button {
     width: 50px;
     background-color: black;
     color: white;
@@ -208,89 +207,89 @@
     display: flex; /* Make the button a flex container */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    }
+}
 
-    .styled-button img { /* Target the image inside the button */
+.styled-button img { /* Target the image inside the button */
     display: block; /* Make sure the image is a block element */
-    }
-  
-    .styled-button.clicked {
-        background-color: #00bcd4; /* Change the background color */
-        color: black;
-        transform: scale(0.9);
-    }
+}
 
-    .dots-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+.styled-button.clicked {
+    background-color: #00bcd4; /* Change the background color */
+    color: black;
+    transform: scale(0.9);
+}
+
+.dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 2px;
+    animation: oscillate 1.5s ease-in-out infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.dot:nth-child(4) {
+    animation-delay: 0.6s;
+}
+.dot:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+@keyframes oscillate {
+    0%, 100% {
+        transform: translateY(-6px); /* Adjust top position */
     }
-    
-    .dot {
-        width: 5px;
-        height: 5px;
-        background-color: white;
-        border-radius: 50%;
-        margin: 0 2px;
-        animation: oscillate 1.5s ease-in-out infinite;
+    50% {
+        transform: translateY(6px); /* Adjust bottom position */
     }
-    
-    .dot:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-    .dot:nth-child(3) {
-        animation-delay: 0.4s;
-    }
-    .dot:nth-child(4) {
-        animation-delay: 0.6s;
-    }
-    .dot:nth-child(5) {
-        animation-delay: 0.8s;
-    }
-    
-    @keyframes oscillate {
-        0%, 100% {
-            transform: translateY(-6px); /* Adjust top position */
-        }
-        50% {
-            transform: translateY(6px); /* Adjust bottom position */
-        }
-    }
-  
-  .tableContainer {
-      width: var(--expansion);
-      margin: 0 auto;
-      border: var(--border-width) solid var(--main-color);
-      border-radius: var(--roundness);
-      overflow: hidden;
-      padding: 0;
-      background-color: var(--bg-color);
-  }
-  
-  .infoTable {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: center;
-      color: white;
-  }
-  
-  .infoTable td {
-      padding: var(--default-padding);
-      border: var(--border-width) solid var(--main-color);
-  }
-  
-  .infoTable tr:first-child td {
-      border-top: none;
-  }
-  
-  .infoTable tr:last-child td {
-      border-bottom: none;
-  }
-  
-  .infoTable tr td:first-child {
-      border-left: none;
-  }
-  
-  .infoTable tr td:last-child {
-      border-right: none;
-  }
+}
+
+.tableContainer {
+    width: var(--expansion);
+    margin: 0 auto;
+    border: var(--border-width) solid var(--main-color);
+    border-radius: var(--roundness);
+    overflow: hidden;
+    padding: 0;
+    background-color: var(--bg-color);
+}
+
+.infoTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    color: white;
+}
+
+.infoTable td {
+    padding: var(--default-padding);
+    border: var(--border-width) solid var(--main-color);
+}
+
+.infoTable tr:first-child td {
+    border-top: none;
+}
+
+.infoTable tr:last-child td {
+    border-bottom: none;
+}
+
+.infoTable tr td:first-child {
+    border-left: none;
+}
+
+.infoTable tr td:last-child {
+    border-right: none;
+}
