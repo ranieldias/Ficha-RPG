@@ -1,11 +1,3 @@
-function buttonClicked(button) {
-    button.classList.add('clicked'); // Add the "clicked" class
-
-    setTimeout(() => {
-        button.classList.remove('clicked'); // Remove the class after 500ms
-    }, 200);
-}
-
 const statusData = [
     { label: "HP", id: "statusHp", dataCell: "H13" },
     { label: "Mana", id: "statusMana", dataCell: "H15" },
@@ -19,10 +11,25 @@ const statusData = [
     const controlsContainer = document.createElement("div");
     controlsContainer.classList.add("controlsContainer");
   
-    const labelSpan = document.createElement("span");
-    labelSpan.style.fontWeight = "bold";
-    labelSpan.textContent = status.label;
-  
+     // Create the label div and give it the far-right class
+     const labelDiv = document.createElement("div");
+     labelDiv.classList.add("far-right");
+     labelDiv.style.fontWeight = "bold";
+     labelDiv.textContent = status.label;
+ 
+     // Create the dots container and add it to the label div
+     const dotsContainer = document.createElement("div");
+     dotsContainer.classList.add("dots-container");
+     dotsContainer.id = `${status.dataCell.toLowerCase()}Dots`; // Unique ID based on dataCell
+ 
+     // Add 5 dots to the dots container
+     for (let i = 0; i < 5; i++) {
+         const dot = document.createElement("div");
+         dot.classList.add("dot");
+         dotsContainer.appendChild(dot);
+     }
+     labelDiv.appendChild(dotsContainer); // Add dotsContainer to labelDiv
+
     const farRightDiv = document.createElement("div");
     farRightDiv.classList.add("far-right");
   
@@ -45,7 +52,7 @@ const statusData = [
     farRightDiv.appendChild(plusButton);
     farRightDiv.appendChild(minusButton);
   
-    controlsContainer.appendChild(labelSpan);
+    controlsContainer.appendChild(labelDiv);
     controlsContainer.appendChild(farRightDiv);
   
     statusContainer.appendChild(controlsContainer);
@@ -56,6 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDropdown();
     reloadData(); // Load data on page load
 });
+
+function showLoadingPopup(element) {
+    document.getElementById(element).style.display = 'flex';
+}
+
+function hideLoadingPopup() {
+    const dotsContainers = document.querySelectorAll('.dots-container');
+
+    dotsContainers.forEach(container => {
+    container.style.display = 'none';
+    });
+}
 
 // Function to open the popup
 function openPopup() {
@@ -150,16 +169,33 @@ function getStatus(sheetId) {
         })
         .catch(error => {
             console.error('Error fetching status data:', error);
-        });
+        })
+        .finally(() => {
+            hideLoadingPopup();
+          });
 }
+
+// Event listener to add a "clicked" class to the styled buttons
+const styledButtons = document.querySelectorAll('.styled-button');
+
+styledButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    button.classList.add('clicked');
+    setTimeout(() => {
+      button.classList.remove('clicked');
+    }, 500);
+  });
+});
 
 // Event listener to add or subtract values from the status
 document.querySelectorAll('.adjust-button').forEach(button => {
     button.addEventListener('click', function() {
         const cell = this.getAttribute('data-cell');
+        const lowerCell = cell.toLowerCase();
         const isIncrement = this.textContent === '+';
         const inputValue = parseInt(document.getElementById('inputValue').value) || 1;
         const value = isIncrement ? -inputValue : inputValue;
+        showLoadingPopup(`${lowerCell}Dots`);
         updateStatus(cell, value);
         document.getElementById('inputValue').value = 1;
     });
