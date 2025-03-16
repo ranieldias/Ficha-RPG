@@ -10,51 +10,134 @@ function generateStatusControls() {
     const statusContainer = document.getElementById("statusContainer");
     
     statusData.forEach((status) => {
-    const controlsContainer = document.createElement("div");
-    controlsContainer.classList.add("controlsContainer");
+        const controlsContainer = document.createElement("div");
+        controlsContainer.classList.add("controlsContainer");
 
-    const labelDiv = document.createElement("div");
-    labelDiv.classList.add("rowContainer");
-    labelDiv.style.fontWeight = "bold";
-    labelDiv.textContent = status.label;
+        const labelDiv = document.createElement("div");
+        labelDiv.classList.add("rowContainer");
+        labelDiv.style.fontWeight = "bold";
+        labelDiv.textContent = status.label;
 
-    const dotsContainer = document.createElement("div");
-    dotsContainer.classList.add("dots-container");
-    dotsContainer.id = `${status.dataCell.toLowerCase()}Dots`;
+        const dotsContainer = document.createElement("div");
+        dotsContainer.classList.add("dots-container");
+        dotsContainer.id = `${status.dataCell.toLowerCase()}Dots`;
 
-    for (let i = 0; i < 5; i++) {
-        const dot = document.createElement("div");
-        dot.classList.add("dot");
-        dotsContainer.appendChild(dot);
-    }
-    labelDiv.appendChild(dotsContainer);
+        for (let i = 0; i < 5; i++) {
+            const dot = document.createElement("div");
+            dot.classList.add("dot");
+            dotsContainer.appendChild(dot);
+        }
+        labelDiv.appendChild(dotsContainer);
 
-    const farRightDiv = document.createElement("div");
-    farRightDiv.classList.add("rowContainer");
+        const farRightDiv = document.createElement("div");
+        farRightDiv.classList.add("rowContainer");
 
-    const statusSpan = document.createElement("span");
-    statusSpan.id = status.id;
-    statusSpan.style.fontWeight = "bold";
-    statusSpan.textContent = "0/0";
+        const statusSpan = document.createElement("span");
+        statusSpan.id = status.id;
+        statusSpan.style.fontWeight = "bold";
+        statusSpan.textContent = "0/0";
 
-    const plusButton = document.createElement("button");
-    plusButton.classList.add("styled-button", "adjust-button");
-    plusButton.dataset.cell = status.dataCell;
-    plusButton.textContent = "+";
+        const plusButton = document.createElement("button");
+        plusButton.classList.add("styled-button", "adjust-button");
+        plusButton.dataset.cell = status.dataCell;
+        plusButton.textContent = "+";
 
-    const minusButton = document.createElement("button");
-    minusButton.classList.add("styled-button", "adjust-button");
-    minusButton.dataset.cell = status.dataCell;
-    minusButton.textContent = "-";
+        const minusButton = document.createElement("button");
+        minusButton.classList.add("styled-button", "adjust-button");
+        minusButton.dataset.cell = status.dataCell;
+        minusButton.textContent = "-";
 
-    farRightDiv.appendChild(statusSpan);
-    farRightDiv.appendChild(plusButton);
-    farRightDiv.appendChild(minusButton);
+        farRightDiv.appendChild(statusSpan);
+        farRightDiv.appendChild(plusButton);
+        farRightDiv.appendChild(minusButton);
 
-    controlsContainer.appendChild(labelDiv);
-    controlsContainer.appendChild(farRightDiv);
+        controlsContainer.appendChild(labelDiv);
+        controlsContainer.appendChild(farRightDiv);
 
-    statusContainer.appendChild(controlsContainer);
+        statusContainer.appendChild(controlsContainer);
+    });
+}
+
+// Function to generate the status controls
+function generateExpertisesControls() {
+    const expertisesData = [
+        { label: "Corpo", id: "ExpertiseCorpo", dataCell: "2" },
+        { label: "Golpe", id: "ExpertiseGolpe", dataCell: "3" },
+        { label: "Agarrar", id: "ExpertiseAgarrar", dataCell: "4" },
+        { label: "Intimidar", id: "ExpertiseIntimidar", dataCell: "5" },
+        { label: "Bloquear", id: "ExpertiseBloquear", dataCell: "6" },
+        { label: "Fadiga", id: "ExpertiseFadiga", dataCell: "7" },
+        { label: "Imunológico", id: "ExpertiseImunológico", dataCell: "8" },
+        { label: "Resistir", id: "ExpertiseResistir", dataCell: "9" },
+        { label: "Agilidade", id: "ExpertiseAgilidade", dataCell: "10" },
+        { label: "Correr", id: "ExpertiseCorrer", dataCell: "11" },
+        { label: "Esquivar", id: "ExpertiseEsquivar", dataCell: "12" },
+        { label: "Esconder", id: "ExpertiseEsconder", dataCell: "13" },
+        { label: "Percepção", id: "ExpertisePercepção", dataCell: "14" },
+        { label: "Técnica", id: "ExpertiseTécnica", dataCell: "15" },
+        { label: "Mirar", id: "ExpertiseMirar", dataCell: "16" },
+        { label: "Manusear", id: "ExpertiseManusear", dataCell: "17" },
+        { label: "Pesquisar", id: "ExpertisePesquisar", dataCell: "18" },
+        { label: "Vontade", id: "ExpertiseVontade", dataCell: "19" },
+        { label: "Concentrar", id: "ExpertiseConcentrar", dataCell: "20" },
+        { label: "Mente", id: "ExpertiseMente", dataCell: "21" },
+        { label: "Lábia", id: "ExpertiseLábia", dataCell: "22" },
+        { label: "Performance", id: "ExpertisePerformance", dataCell: "23" },
+        { label: "Seduzir", id: "ExpertiseSeduzir", dataCell: "24" },
+        { label: "Persuadir", id: "ExpertisePersuadir", dataCell: "25" }
+    ];
+    
+    const expertisesContainer = document.getElementById("expertisesContainer");
+    
+    expertisesData.forEach((expertise) => {
+        const controlsContainer = document.createElement("div");
+        controlsContainer.classList.add("controlsContainer");
+
+        const labelDiv = document.createElement("div");
+        labelDiv.classList.add("rowContainer");
+        labelDiv.style.fontWeight = "bold";
+        labelDiv.textContent = expertise.label;
+
+        const dotsContainer = document.createElement("div");
+        dotsContainer.classList.add("dots-container");
+        dotsContainer.id = `${expertise.dataCell.toLowerCase()}Dots`;
+
+        for (let i = 0; i < 5; i++) {
+            const dot = document.createElement("div");
+            dot.classList.add("dot");
+            dotsContainer.appendChild(dot);
+        }
+        labelDiv.appendChild(dotsContainer);
+
+        const farRightDiv = document.createElement("div");
+        farRightDiv.classList.add("rowContainer");
+
+        const expertiseSpan = document.createElement("span");
+        expertiseSpan.id = expertise.id;
+        expertiseSpan.style.fontWeight = "bold";
+        expertiseSpan.textContent = "0+0+0+0";
+
+        const diceButton = document.createElement("button");
+        diceButton.classList.add("styled-button", "expertise-button");
+        diceButton.dataset.cell = expertise.dataCell;
+
+        // Create an image element for the dice icon
+        const diceIcon = document.createElement("img");
+        diceIcon.src = "assets/dice-white.svg";
+        diceIcon.alt = "Dice Icon";
+        diceIcon.style.width = "20px";
+        diceIcon.style.height = "20px";
+
+        // Add the image to the button
+        diceButton.appendChild(diceIcon);
+
+        farRightDiv.appendChild(expertiseSpan);
+        farRightDiv.appendChild(diceButton);
+
+        controlsContainer.appendChild(labelDiv);
+        controlsContainer.appendChild(farRightDiv);
+
+        expertisesContainer.appendChild(controlsContainer);
     });
 }
 
@@ -106,6 +189,7 @@ function generateAttributesTable() {
 }
 
 generateStatusControls();
+generateExpertisesControls();
 generateAttributesTable();
 
 // Function to show and hide the loading animation
@@ -120,11 +204,11 @@ function hideLoadingAnimation() {
 }
 
 // Functions to open and close the popup
-function openPopup() {
-    document.getElementById('popup').style.display = 'block';
+function openAddId() {
+    document.getElementById('addId').showModal();
 }
-function closePopup() {
-    document.getElementById('popup').style.display = 'none';
+function closeAddId() {
+    document.getElementById('addId').close();
 }
 
 // Function to store the Sheet ID locally
@@ -218,7 +302,6 @@ function updateStatus(cell, value) {
 // Function to update the dropdown menu based on stored sheet IDs
 function updateDropdown() {
     const dropdown = document.getElementById('sheetDropdown');
-    dropdown.innerHTML = '<option value="" disabled selected>Select a Sheet</option>';
     const storedSheets = JSON.parse(localStorage.getItem('sheetIds')) || [];
     const selectedSheetId = localStorage.getItem('selectedSheetId');
 
@@ -257,7 +340,7 @@ styledButtons.forEach(button => {
         button.classList.add('clicked');
         setTimeout(() => {
             button.classList.remove('clicked');
-        }, 500);
+        }, 200);
     });
 });
 

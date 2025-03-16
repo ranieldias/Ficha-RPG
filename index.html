@@ -1,67 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha RPG</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <div class="dropdown-container">
-            <select id="sheetDropdown" class="dropdown" onchange="loadSheetData()">
-                <option value="" disabled selected>Select a Sheet</option>
-            </select>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ficha RPG</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- Dropdown and Add Button -->
+        <div class="spaceContainer">
+                <select class="dropdown" id="sheetDropdown">
+                <option value="" disabled selected>Personagem</option>
+                </select>
+            <button class="styled-button" onclick="openAddId()">+</button>
         </div>
-        <div class="button-container">
-            <button class="styled-button" onclick="openPopup()">+</button>
+
+        <!-- Number Input -->
+        <div class="spaceContainer">
+            <span style="font-weight: bold;">Digite um valor: </span>
+            <input type="number" id="inputValue" value="1" min="1"  style="width:100px">
         </div>
-    </div>
-
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="closePopup()">&times;</span>
-            <h2>Enter Sheet ID</h2>
-            <div class="rowContainer">
-                <input type="text" id="sheetIdInput" placeholder="Enter Sheet ID" style="width: 60%; height: 38px">
-                <button class="styled-button" style="width: 30%; height: 50px" onclick="storeSheetId()">Save</button>
-            </div>
+            
+        <!-- Status Controler -->
+        <div class="collumContainer" id="statusContainer">
+            <!-- Filled in JS -->
         </div>
-    </div>
-    
-    <div id="fieldContainer">
-        <span style="font-weight: bold;">Digite um valor: </span>
-        <input type="number" id="inputValue" value="1" min="1"  style="width:100px">
-    </div>
-        
-    <div id="statusContainer">
-        <div class="controlsContainer">
-            <div class="rowContainer">
-            <span style="font-weight: bold;">Imunológico</span>
 
-            <div class="dots-container" id="dotsLoad">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-            </div>
-
-            <div class="rowContainer"> 
-                
-                <span style="font-weight: bold;">0+2+2+3</span>
-
-                <button class="styled-button" data-cell="H13">
-                    <img src="assets/dice-white.svg" alt="Dice Icon" style="width: 20px; height: 20px;">
-                  </button>
-            </div>
+        <!-- Expertises Controler -->
+        <div class="collumContainer" id="expertisesContainer">
+            <!-- Filled in JS -->
         </div>
-    </div>
 
-    <div class="tableContainer">
-    </div>
-    
-    <script src="script.js"></script>
-</body>
+        <!-- Attributes Table -->
+        <div class="tableContainer">
+            <!-- Filled in JS -->
+        </div>
+
+        <!-- Popups -->
+        <dialog class="popupContainer" id="addId">
+            <div class="popupContent">
+                <div class="spaceContainer">
+                <h2>Adicionar Personagem</h2>
+                <span class="close-btn" onclick="closeAddId()">&times;</span>
+                </div> 
+
+                <div class="spaceContainer">
+                    <input type="text" id="sheetIdInput" placeholder="ID da Ficha" style="width: 100%; height: 38px">
+                    <button class="styled-button" style="width: 30%; height: 50px" onclick="storeSheetId()">Salvar</button>
+                </div>
+            </div>
+        </dialog>
+
+        <script src="script.js"></script>
+    </body>
 </html>
