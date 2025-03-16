@@ -1,8 +1,8 @@
-// Function to generate the status controls
+// Functions to generate elements
 function generateStatusControls() {
     const statusData = [
-        { label: "HP", id: "statusHp", dataCell: "H13" },
-        { label: "Mana", id: "statusMana", dataCell: "H15" },
+        { label: "Hp", id: "statusHp", dataCell: "H13" },
+        { label: "Magia", id: "statusMagia", dataCell: "H15" },
         { label: "Energia", id: "statusEnergia", dataCell: "H16" },
         { label: "Alma", id: "statusAlma", dataCell: "H14" },
     ];
@@ -58,7 +58,6 @@ function generateStatusControls() {
     });
 }
 
-// Function to generate the status controls
 function generateExpertisesControls() {
     const expertisesData = [
         { label: "Corpo", id: "ExpertiseCorpo", dataCell: "2" },
@@ -141,7 +140,6 @@ function generateExpertisesControls() {
     });
 }
 
-// Function to generate the attributes table
 function generateAttributesTable() {
     const tableData = [
     { headers: ["FOR", "CON", "DES"], ids: ["strengthValue", "constitutionValue", "dexterityValue"] },
